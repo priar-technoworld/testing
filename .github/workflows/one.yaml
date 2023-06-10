@@ -17,6 +17,16 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::090323524233:role/GitHubAction-AssumeRoleWithAction
         aws-region: us-east-2
+        role-session-name: MySessionName
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: us-east-2
+        role-to-assume: arn:aws:iam::090323524233:role/GitHubAction-AssumeRoleWithAction
+        role-duration-seconds: 1200
+        role-session-name: MySessionName
 
     - name: Login to Amazon ECR
       id: login-ecr
